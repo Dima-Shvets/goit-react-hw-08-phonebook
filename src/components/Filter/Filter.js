@@ -8,7 +8,7 @@ import { contactsActions, contactsSelectors } from 'redux/contacts';
 
 const filterId = nanoid();
 
-export default function Filter() {
+export function Filter() {
   const filter = useSelector(contactsSelectors.getFilter);
   const dispatch = useDispatch();
   const updateFilter = message =>

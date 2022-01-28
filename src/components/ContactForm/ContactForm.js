@@ -10,7 +10,7 @@ import { contactsOperations, contactsSelectors } from 'redux/contacts';
 const nameInputId = nanoid();
 const numberInputId = nanoid();
 
-export default function ContactForm() {
+export  function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const contacts = useSelector(contactsSelectors.getContacts);

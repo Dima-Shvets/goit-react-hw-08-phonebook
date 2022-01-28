@@ -4,7 +4,7 @@ import s from './ContactList.module.scss';
 
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
 
-export default function ContactList() {
+export function ContactList() {
   const filteredContacts = useSelector(contactsSelectors.getFilteredContacts);
   const dispatch = useDispatch();
   const deleteContact = id => dispatch(contactsOperations.deleteContact(id));
