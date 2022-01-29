@@ -1,10 +1,21 @@
-import { AuthMenu } from '../AuthMenu';
+import { useSelector } from 'react-redux';
 
-export function AppHeader () {
+import { AuthMenu } from '../AuthMenu';
+import { UserMenu } from 'components/UserMenu';
+import { authSelectors } from 'redux/auth';
+
+
+export function AppHeader() {
+    const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
     return (
         <header>
-            <AuthMenu/>
+            {/* {isLoggedIn ? 
+            <UserMenu />
+            : <AuthMenu />} */}
+
+            <UserMenu />
+            <AuthMenu />
         </header>
     )
 } 

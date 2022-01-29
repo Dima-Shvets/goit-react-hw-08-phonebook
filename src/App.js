@@ -1,16 +1,26 @@
 import { Route, Switch } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 import { AppHeader } from 'components/AppHeader';
 import { ContactsView } from 'views/ContactsView';
 import { LogInView } from 'views/LogInView/LogInView';
-import { SignInView } from 'views/SignInView/SignInView';
+import { SignUpView } from 'views/SignUpView/SignUpView';
+
+import { authOperations } from 'redux/auth';
 
 import './common-style.scss';
 import './App.scss';
 
 
 
+
 function App() {
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser())
+  })
   
   return (
     <>
@@ -23,7 +33,7 @@ function App() {
         <LogInView/> 
       </Route>
       <Route path="/signin">
-        <SignInView/> 
+        <SignUpView/> 
         </Route>
         <Route>
             <p>Not Found</p>

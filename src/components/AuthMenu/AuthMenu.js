@@ -5,7 +5,7 @@ export function AuthMenu() {
     return (
         <>
         <NavLink to="/">Contacts</NavLink>
-        <NavLink to="/signin">Sign In</NavLink>
+        <NavLink to="/signin">Sign Up</NavLink>
         <NavLink to="/login">Log In</NavLink>
         </>
     )
