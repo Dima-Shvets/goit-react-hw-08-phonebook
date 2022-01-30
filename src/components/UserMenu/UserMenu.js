@@ -8,7 +8,6 @@ export function UserMenu() {
     const dispatch = useDispatch();
 
     const handleButtonClick = () => {
-        console.log('HBC')
         dispatch(authOperations.logOut())
     }    
     return (

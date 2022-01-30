@@ -19,13 +19,13 @@ export  function ContactForm() {
   const dispatch = useDispatch();
 
   const addContact = contact => {
-    const { name } = contact;
-    const check = contacts.find(contact => contact.name === name);
+    // const { name } = contact;
+    // const check = contacts.find(contact => contact.name === name);
 
-    if (check) {
-      alert('This contact is already in the list!');
-      return;
-    }
+    // if (check) {
+    //   alert('This contact is already in the list!');
+    //   return;
+    // }
 
     dispatch(contactsOperations.addContact(contact));
   };

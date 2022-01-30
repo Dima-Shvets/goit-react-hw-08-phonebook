@@ -10,7 +10,6 @@ export const getFilteredContacts = createSelector(
   [getContacts, getFilter],
   (contacts, filter) => {
     const normalizedFilter = filter.toLocaleLowerCase();
-
     return contacts.filter(contact =>
       contact.name.toLocaleLowerCase().includes(normalizedFilter),
     );

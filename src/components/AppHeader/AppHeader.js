@@ -10,12 +10,9 @@ export function AppHeader() {
 
     return (
         <header>
-            {/* {isLoggedIn ? 
+            {isLoggedIn ? 
             <UserMenu />
-            : <AuthMenu />} */}
-
-            <UserMenu />
-            <AuthMenu />
+            : <AuthMenu />}
         </header>
     )
 } 

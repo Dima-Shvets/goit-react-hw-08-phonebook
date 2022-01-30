@@ -11,27 +11,39 @@ const token = {
 
 export const signUp = createAsyncThunk(
     'auth/singup',
-    async (credentials) => {
-        const { data } = await axios.post('/users/signup', credentials);
-        token.set(data.token);
-        return data;
+    async (credentials, { rejectWithValue }) => {
+        try {
+            const { data } = await axios.post('/users/signup', credentials);
+            token.set(data.token);
+            return data;
+        } catch (error) {
+            return rejectWithValue()
+        }
     }
 )
 
 export const logIn = createAsyncThunk(
     'auth/login',
-    async (credentials) => {
-        const { data } = await axios.post('/users/login', credentials);
-        token.set(data.token);
-        return data;
+    async (credentials, {rejectWithValue}) => {
+        try {
+            const { data } = await axios.post('/users/login', credentials);
+            token.set(data.token);
+            return data;
+        } catch (error) {
+            return rejectWithValue(error)
+        }
     }
 )
 
 export const logOut = createAsyncThunk(
     'auth/logout',
-    async() => {
-        await axios.post('/users/logout') 
+    async(_, {rejectWithValue}) => {
+        try {
+            await axios.post('/users/logout') 
         token.unset();
+        } catch (error) {
+            return rejectWithValue(error)
+        }
     }
 )
 
@@ -42,11 +54,16 @@ export const fetchCurrentUser = createAsyncThunk(
         const persistedToken = state.auth.token;
         
         if (persistedToken === null) {
-            return rejectWithValue
+            return rejectWithValue();
         }
         
         token.set(persistedToken)
-        const { data } = await axios.get('/users/current');
-        return data;
+
+        try {
+            const { data } = await axios.get('/users/current');
+            return data;
+        } catch (error) {
+            return rejectWithValue(error)
+        }
     }
 )
