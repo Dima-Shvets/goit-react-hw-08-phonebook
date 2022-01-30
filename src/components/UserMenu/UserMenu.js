@@ -2,8 +2,24 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { authSelectors, authOperations } from "redux/auth";
 
+import defaultAvatar from './avatar.png';
+
+import s from './UserMenu.module.scss'
+
+import Button from '@mui/material/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#01579b",
+    },
+  },
+});
+
 export function UserMenu() {
-    const name = useSelector(authSelectors.getName)
+    const name = useSelector(authSelectors.getName);
+    const avatar = defaultAvatar;
 
     const dispatch = useDispatch();
 
@@ -11,13 +27,17 @@ export function UserMenu() {
         dispatch(authOperations.logOut())
     }    
     return (
-        <div>
-            <img src='#' alt='user avatar'/>
-            <p>Welcome {name}</p>
-            <button
-                type='button'
+        <div className={s.UserMenu}>
+            <img className={s.avatar} src={avatar} width="30" alt='user avatar'/>
+            <span className={s['text']}>Welcome {name}</span>
+            <ThemeProvider theme={theme}>
+            <Button
+                variant="outlined"
+                size="small"
                 onClick={handleButtonClick}
-            >Sign Out</button>
+                color='primary'    
+                >Sign Out</Button>
+            </ThemeProvider>
         </div>
     )
 }

@@ -1,11 +1,12 @@
-const { NavLink } = require("react-router-dom");
+import {NavLink} from "react-router-dom";
 
+import s from './AuthMenu.module.scss';
 
 export function AuthMenu() {
     return (
-        <>
-        <NavLink to="/signin">Sign Up</NavLink>
-        <NavLink to="/login">Log In</NavLink>
-        </>
+        <div className={s.AuthMenu}>
+        <NavLink className={s.link} activeClassName={s['active-link']} to="/signup">Sign Up</NavLink>
+        <NavLink className={s.link} activeClassName={s['active-link']} to="/login">Log In</NavLink>
+        </div>
     )
 }

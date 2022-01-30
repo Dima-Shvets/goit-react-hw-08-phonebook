@@ -3,7 +3,23 @@ import { useDispatch } from "react-redux";
 
 import { authOperations } from "redux/auth";
 
-export function SignUpView() {
+import s from './SignUpView.module.scss';
+
+import {Section} from 'components/Section'
+
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#01579b",
+        },
+  },
+});
+
+export default function SignUpView() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -33,37 +49,52 @@ export function SignUpView() {
     }
 
     return (
-        <section>
-            <h1>This is a Sing In View</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Your name 
-                    <input
-                        name='name'
-                        value={name}
-                        onChange={handleInputChange}
+        <Section>
+            <h1 className={s.title}>Sign Up</h1>
+            <form className={s.form} onSubmit={handleSubmit}>
+                <ThemeProvider theme={theme}>
+                <TextField
+                    label="Your name"
+                    size="small"
+                    color="primary"
+                        name="name"
+                        className={s.input}
+                    onChange={handleInputChange}
                     />
-                </label>
-                <label>
-                    Your E-mail
-                    <input
-                        name='email'
-                        value={email}
-                        type='email'
-                        onChange={handleInputChange}
+                </ThemeProvider>
+                 <ThemeProvider theme={theme}>
+                <TextField
+                    label="Your e-mail"
+                    type="email"
+                    size="small"
+                    color="primary"
+                        name="email"
+                        className={s.input}
+                    onChange={handleInputChange}
                     />
-                </label>
-                <label>
-                    Create password
-                    <input
-                        name='password'
-                        value={password}
-                        type='password'
-                        onChange={handleInputChange}
+                </ThemeProvider>
+                <ThemeProvider theme={theme}>
+                <TextField
+                    label="Your password"
+                    type="password"
+                    size="small"
+                    color="primary"
+                        name="password"
+                        className={s.input}
+                    onChange={handleInputChange}
                     />
-                </label>
-                <button type='submit'>Sign Up</button>
+                </ThemeProvider>
+
+                <ThemeProvider theme={theme}>
+                    <Button
+                        className={s.btn}
+                variant="contained"
+                        size="normal"
+                        type="submit"
+                color='primary'    
+                >Sign Up</Button>
+            </ThemeProvider>
             </form>
-        </section>
+        </Section>
     )
 }

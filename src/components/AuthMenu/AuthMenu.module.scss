@@ -1,0 +1,24 @@
+.AuthMenu {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.link:not(:last-child) {
+  margin-right: 15px;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.active-link,
+.link:hover {
+  color: #01579b;
+}
+
+// .active-link {
+//     color: orange;
+// }

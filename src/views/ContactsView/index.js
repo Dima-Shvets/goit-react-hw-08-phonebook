@@ -1,1 +1,1 @@
-export * from './ContactsView';
+export {default} from './ContactsView';

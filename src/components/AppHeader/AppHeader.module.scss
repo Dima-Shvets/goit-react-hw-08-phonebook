@@ -1,0 +1,15 @@
+.AppHeader {
+  display: flex;
+  justify-content: space-between;
+  min-height: 45px;
+  border-bottom: 1px solid black;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  font-size: 25px;
+  font-weight: 700;
+  color: #01579b;
+}

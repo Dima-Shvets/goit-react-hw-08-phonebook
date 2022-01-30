@@ -9,7 +9,7 @@ import { Filter } from 'components/Filter';
 
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
 
-export function ContactsView() {
+export default function ContactsView() {
     const isLoading = useSelector(contactsSelectors.getIsLoading);
   const error = useSelector(contactsSelectors.getError);
   const dispatch = useDispatch();

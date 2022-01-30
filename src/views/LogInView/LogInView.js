@@ -3,7 +3,22 @@ import { useDispatch } from "react-redux";
 
 import { authOperations } from "redux/auth";
 
-export function LogInView() {
+import { Section } from 'components/Section';
+import s from './LogInView.module.scss';
+
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#01579b",
+        },
+  },
+});
+
+export default function LogInView() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -30,29 +45,42 @@ export function LogInView() {
     }
 
     return (
-        <section>
-            <h1>This is a login view!</h1>
-            <form onSubmit={handleSubmit}>
-                <label >
-                    E-mail
-                    <input
-                        name='email'
-                        value={email}
-                        type='email'
-                        onChange={handleInputChange}
+        <Section>
+            <h1 className={s.title}>Log In</h1>
+            <form className={s.form} onSubmit={handleSubmit}>
+                <ThemeProvider theme={theme}>
+                <TextField
+                    label="E-mail"
+                    type="email"
+                    size="small"
+                    color="primary"
+                        name="email"
+                        className={s.input}
+                    onChange={handleInputChange}
                     />
-                </label>
-                <label>
-                    Password
-                    <input
-                        name='password'
-                        value={password}
-                        type='password'
-                        onChange={handleInputChange}
+                </ThemeProvider>
+                <ThemeProvider theme={theme}>
+                <TextField
+                    label="Password"
+                    type="password"
+                    size="small"
+                    color="primary"
+                        name="password"
+                        className={s.input}
+                    onChange={handleInputChange}
                     />
-                </label>
-                <button type='submit'>Sign In</button>
+                </ThemeProvider>
+
+                <ThemeProvider theme={theme}>
+                    <Button
+                        className={s.btn}
+                variant="contained"
+                        size="normal"
+                        type="submit"
+                color='primary'    
+                >Log In</Button>
+            </ThemeProvider>
             </form>
-        </section>
+        </Section>
     )
 }
