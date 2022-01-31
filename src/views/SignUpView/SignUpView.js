@@ -58,7 +58,8 @@ export default function SignUpView() {
                     size="small"
                     color="primary"
                         name="name"
-                        className={s.input}
+                        margin="normal"
+                        value={name}
                     onChange={handleInputChange}
                     />
                 </ThemeProvider>
@@ -69,7 +70,8 @@ export default function SignUpView() {
                     size="small"
                     color="primary"
                         name="email"
-                        className={s.input}
+                        margin="normal"
+                        value={email}
                     onChange={handleInputChange}
                     />
                 </ThemeProvider>
@@ -80,7 +82,8 @@ export default function SignUpView() {
                     size="small"
                     color="primary"
                         name="password"
-                        className={s.input}
+                        margin="normal"
+                        value={password}
                     onChange={handleInputChange}
                     />
                 </ThemeProvider>

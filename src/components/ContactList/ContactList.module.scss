@@ -1,5 +1,18 @@
+.list {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
 .element:not(:last-child) {
   margin-bottom: 10px;
+}
+
+.element {
+  justify-content: space-between;
+  display: flex;
 }
 
 .button {

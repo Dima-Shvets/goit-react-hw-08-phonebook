@@ -1,12 +1,20 @@
 // import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { nanoid } from 'nanoid';
 import s from './Filter.module.scss';
 
 import { contactsActions, contactsSelectors } from 'redux/contacts';
 
-const filterId = nanoid();
+import TextField from '@mui/material/TextField';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#01579b",
+        },
+  },
+});
 
 export function Filter() {
   const filter = useSelector(contactsSelectors.getFilter);
@@ -19,20 +27,22 @@ export function Filter() {
     updateFilter(message);
   };
 
+  
+
   return (
-    <>
-      <label className={s.label} htmlFor={filterId}>
-        Find contacts by name
-      </label>
-      <input
-        className={s.input}
-        id={filterId}
-        type="text"
-        name="filter"
-        value={filter}
-        onChange={filterHandler}
-      />
-    </>
+    <div className={s.Filter}>
+      <ThemeProvider theme={theme}>
+      <TextField
+          label="Find contacts by name"
+          type="text"
+          size="small"
+          color="primary"
+              name="filter"
+              margin="normal"
+          onChange={filterHandler}
+          />
+      </ThemeProvider>
+      </div>
   );
 }
 

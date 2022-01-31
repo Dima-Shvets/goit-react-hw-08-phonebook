@@ -3,30 +3,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import s from './ContactForm.module.scss';
 
 import { Oval } from 'react-loader-spinner';
-import { nanoid } from 'nanoid';
 
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
 
-const nameInputId = nanoid();
-const numberInputId = nanoid();
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#01579b",
+        },
+  },
+});
 
 export  function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(contactsSelectors.getContacts);
   const isAddingContact = useSelector(contactsSelectors.getIsAddingContact);
 
   const dispatch = useDispatch();
 
   const addContact = contact => {
-    // const { name } = contact;
-    // const check = contacts.find(contact => contact.name === name);
-
-    // if (check) {
-    //   alert('This contact is already in the list!');
-    //   return;
-    // }
-
     dispatch(contactsOperations.addContact(contact));
   };
 
@@ -61,46 +60,48 @@ export  function ContactForm() {
 
   return (
     <form className={s['contact-form']} onSubmit={submitHandler}>
-      <label htmlFor={nameInputId} className={s['name-label']}>
-        Name
-      </label>
-      <input
-        id={nameInputId}
-        type="text"
-        name="name"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        required
-        value={name}
-        onChange={inputHandler}
-      />
-      <label htmlFor={numberInputId} className={s['number-label']}>
-        Number
-      </label>
-      <input
-        id={numberInputId}
-        className={s['number-input']}
-        type="tel"
-        name="number"
-        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-        required
-        value={number}
-        onChange={inputHandler}
-      />
-      <button className={s['btn']} type="submit">
-        Add contact
-        {isAddingContact && (
+      <ThemeProvider theme={theme}>
+      <TextField
+          label="Name"
+          type="text"
+          size="small"
+          color="primary"
+              name="name"
+          margin="dense"
+          value={name}
+          onChange={inputHandler}
+          />
+      </ThemeProvider>
+      <ThemeProvider theme={theme}>
+      <TextField
+          label="Number"
+          type="tel"
+          size="small"
+          color="primary"
+              name="number"
+          margin="dense"
+          value={number}
+          onChange={inputHandler}
+          />
+      </ThemeProvider>
+      <Button
+      className={s.btn}
+      variant="contained"
+      size="normal"
+      type="submit"
+      color='primary'    
+      >Add contact
+      {isAddingContact && (
           <Oval
             ariaLabel="loading-indicator"
             height={12}
             width={12}
             strokeWidth={5}
             color="black"
-            secondaryColor="grey"
+            secondaryColor="#01579b"
           />
         )}
-      </button>
+      </Button>
     </form>
   );
 }

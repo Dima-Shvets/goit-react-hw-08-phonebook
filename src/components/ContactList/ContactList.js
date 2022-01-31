@@ -4,28 +4,41 @@ import s from './ContactList.module.scss';
 
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
 
+import Button from '@mui/material/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#01579b",
+        },
+  },
+});
+
 export function ContactList() {
   const filteredContacts = useSelector(contactsSelectors.getFilteredContacts);
   const dispatch = useDispatch();
   const deleteContact = id => dispatch(contactsOperations.deleteContact(id));
 
   return (
-    <ul>
+    <ul className={s.list}>
       {filteredContacts.map(({ id, name, number }) => {
         return (
           <li key={id} className={s.element}>
             {name}: {number}
-            <button
-              className={s.button}
-              type="button"
-              onClick={() => deleteContact(id)}
-            >
-              Delete
-            </button>
+            <Button
+              className={s.btn}
+              variant="contained"
+              size="small"
+              type="submit"
+              color='primary'
+              onClick={() => deleteContact(id)}        
+              >Delete
+            </Button>
           </li>
         );
       })}
-    </ul>
+      </ul>
   );
 }
 

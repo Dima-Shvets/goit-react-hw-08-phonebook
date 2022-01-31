@@ -7,6 +7,8 @@ import { PublicRoute } from 'components/PublicRoute';
 
 import { authOperations, authSelectors } from 'redux/auth';
 
+import { Oval } from 'react-loader-spinner';
+
 import './common-style.scss';
 import './App.scss';
 
@@ -44,13 +46,13 @@ function App() {
     {!isFetchingCurrentUser && (
     <>
       <AppHeader />
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<p>Loading the page...</p>}>
           <Switch>
             <PrivateRoute redirectTo='/login' path="/" exact>
               <ContactsView/> 
             </PrivateRoute>
             <PublicRoute redirected path="/login">
-              <LogInView/>s
+              <LogInView/>
             </PublicRoute>
             <PublicRoute redirected path="/signup">
               <SignUpView/> 

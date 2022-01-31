@@ -55,7 +55,8 @@ export default function LogInView() {
                     size="small"
                     color="primary"
                         name="email"
-                        className={s.input}
+                        margin="normal"
+                        value={email}
                     onChange={handleInputChange}
                     />
                 </ThemeProvider>
@@ -66,7 +67,8 @@ export default function LogInView() {
                     size="small"
                     color="primary"
                         name="password"
-                        className={s.input}
+                        margin="normal"
+                        value={password}
                     onChange={handleInputChange}
                     />
                 </ThemeProvider>
