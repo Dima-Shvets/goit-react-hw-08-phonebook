@@ -36,7 +36,7 @@ export function UserMenu() {
                 size="small"
                 onClick={handleButtonClick}
                 color='primary'    
-                >Sign Out</Button>
+                >Log Out</Button>
             </ThemeProvider>
         </div>
     )

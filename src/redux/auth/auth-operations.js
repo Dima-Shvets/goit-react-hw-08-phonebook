@@ -1,21 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import axios from 'axios';
-
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
-
-const token = {
-    set(token) {axios.defaults.headers.common.Authorization = `Bearer ${token}`},
-    unset() {axios.defaults.headers.common.Authorization = ``}
-}
+import {
+    signUpService,
+    logInService,
+    logOutService,
+    fetchCurrentUserService,
+} from 'services/contacts-api-service';
 
 export const signUp = createAsyncThunk(
     'auth/singup',
     async (credentials, { rejectWithValue }) => {
         try {
-            const { data } = await axios.post('/users/signup', credentials);
-            token.set(data.token);
-            return data;
+            const user = await signUpService(credentials);
+            return user;
         } catch (error) {
             return rejectWithValue()
         }
@@ -26,9 +23,8 @@ export const logIn = createAsyncThunk(
     'auth/login',
     async (credentials, {rejectWithValue}) => {
         try {
-            const { data } = await axios.post('/users/login', credentials);
-            token.set(data.token);
-            return data;
+            const user = await logInService(credentials);
+            return user;
         } catch (error) {
             return rejectWithValue(error)
         }
@@ -39,8 +35,7 @@ export const logOut = createAsyncThunk(
     'auth/logout',
     async(_, {rejectWithValue}) => {
         try {
-            await axios.post('/users/logout') 
-        token.unset();
+            await logOutService() 
         } catch (error) {
             return rejectWithValue(error)
         }
@@ -56,12 +51,10 @@ export const fetchCurrentUser = createAsyncThunk(
         if (persistedToken === null) {
             return rejectWithValue();
         }
-        
-        token.set(persistedToken)
 
         try {
-            const { data } = await axios.get('/users/current');
-            return data;
+            const user = await fetchCurrentUserService(persistedToken);
+            return user;
         } catch (error) {
             return rejectWithValue(error)
         }

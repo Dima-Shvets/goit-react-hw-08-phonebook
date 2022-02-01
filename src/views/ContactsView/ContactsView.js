@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Oval } from 'react-loader-spinner';
-
 import { ContactForm } from 'components/ContactForm';
 import {ContactList} from 'components/ContactList';
 import { Filter } from 'components/Filter';
@@ -11,6 +9,8 @@ import { Section } from 'components/Section';
 import s from './ContactsView.module.scss';
 
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
+
+import Alert from '@mui/material/Alert';
 
 export default function ContactsView() {
     const isLoading = useSelector(contactsSelectors.getIsLoading);
@@ -31,7 +31,7 @@ export default function ContactsView() {
           <p>Loading the contacts</p>
           : <ContactList/>
       }
-      {error && <p>404. Unable to load the contacts</p>}
+        {error && <Alert severity="error">404. Server does not respond</Alert>}
         </Section>
     )
 }

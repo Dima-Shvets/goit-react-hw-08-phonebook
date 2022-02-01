@@ -38,6 +38,12 @@ const error = createReducer(null, {
   [fetchContacts.pending]: () => null,
   [fetchContacts.fulfilled]: () => null,
   [fetchContacts.rejected]: () => true,
+  [addContact.pending]: () => null,
+  [addContact.fulfilled]: () => null,
+  [addContact.rejected]: () => true,
+  [deleteContact.pending]: () => null,
+  [deleteContact.fulfilled]: () => null,
+  [deleteContact.rejected]: () => true,
 });
 
 export default combineReducers({

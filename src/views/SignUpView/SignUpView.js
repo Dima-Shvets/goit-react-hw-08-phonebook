@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { authOperations } from "redux/auth";
+import { authOperations, authSelectors } from "redux/auth";
 
 import s from './SignUpView.module.scss';
 
@@ -9,6 +9,7 @@ import {Section} from 'components/Section'
 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -23,6 +24,8 @@ export default function SignUpView() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const error = useSelector(authSelectors.getError);
 
     const dispatch = useDispatch();
 
@@ -96,7 +99,7 @@ export default function SignUpView() {
                         type="submit"
                 color='primary'    
                 >Sign Up</Button>
-            </ThemeProvider>
+                </ThemeProvider>
             </form>
         </Section>
     )

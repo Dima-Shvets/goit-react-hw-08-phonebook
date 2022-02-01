@@ -5,15 +5,7 @@ import s from './ContactList.module.scss';
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
 
 import Button from '@mui/material/Button';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#01579b",
-        },
-  },
-});
 
 export function ContactList() {
   const filteredContacts = useSelector(contactsSelectors.getFilteredContacts);

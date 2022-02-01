@@ -1,13 +1,14 @@
 import { useState } from "react"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { authOperations } from "redux/auth";
+import { authOperations, authSelectors } from "redux/auth";
 
 import { Section } from 'components/Section';
 import s from './LogInView.module.scss';
 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -21,6 +22,8 @@ const theme = createTheme({
 export default function LogInView() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const error = useSelector(authSelectors.getError);
 
     const dispatch = useDispatch();
 
@@ -81,7 +84,8 @@ export default function LogInView() {
                         type="submit"
                 color='primary'    
                 >Log In</Button>
-            </ThemeProvider>
+                </ThemeProvider>
+                {error && <Alert severity="error">Unable to log in</Alert>}
             </form>
         </Section>
     )
